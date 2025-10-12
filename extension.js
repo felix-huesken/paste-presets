@@ -118,7 +118,11 @@ export default class PastePresets extends Extension {
 		presets = this._readLinesFromFile();
 
 		for (let i = 0; i < presets.length; i++) {
-			let item = new PopupMenu.PopupMenuItem(presets[i]);
+			let itemLabel = presets[i];
+			if (presets[i].length > 50) {
+				itemLabel = presets[i].slice(0, 50) + "...";
+			}
+			let item = new PopupMenu.PopupMenuItem(itemLabel);
 
 			item.connect("activate", () => {
 				const clipboard = St.Clipboard.get_default();
