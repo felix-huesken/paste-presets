@@ -67,6 +67,7 @@ export default class PastePresets extends Extension {
 		this._indicator.add_child(icon);
 		Main.panel.addToStatusArea("Paste Presets", this._indicator);
 
+		// Reload the text entries from the text file and re-build the menu when it's opened
 		this._indicator.connect("button-press-event", (actor, event) => {
 			this._createMenu();
 		});
@@ -86,6 +87,8 @@ export default class PastePresets extends Extension {
 		if (!this._indicator) return;
 
 		const menu = this._indicator.menu;
+
+		// if the menu is open, make the global keyboard shortcut select the next entries
 		if (menu.isOpen) {
 			this.keyboard.press(Clutter.KEY_Down);
 			this.keyboard.release(Clutter.KEY_Down);
@@ -106,6 +109,7 @@ export default class PastePresets extends Extension {
 	}
 
 	_createMenu() {
+		// Destroy and re-build the menu with new text entries
 		if (this._popUpMenu) {
 			this._popUpMenu.destroy();
 		}
@@ -125,12 +129,15 @@ export default class PastePresets extends Extension {
 			let item = new PopupMenu.PopupMenuItem(itemLabel);
 
 			item.connect("activate", () => {
+				// Get the clipboard and insert the currently selected text entry into it.
 				const clipboard = St.Clipboard.get_default();
 				clipboard.set_text(St.ClipboardType.CLIPBOARD, presets[i]);
 
 				this._indicator.menu.close();
 
 				/* 
+				Paste the selected text entry from the clipboard.
+				
 				The following code snippet is taken from:
 				https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator
 				 */
