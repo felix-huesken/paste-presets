@@ -5,6 +5,5 @@
 	"shell-version": ["48"],
 	"settings-schema": "org.gnome.shell.extensions.paste-presets",
 	"gettext-domain": "paste-presets",
-	"preferences": "prefs.js",
 	"url": "https://github.com/felix-huesken/paste-presets"
 }
