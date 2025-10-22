@@ -202,8 +202,6 @@ export default class PastePresets extends Extension {
 	}
 
 	disable() {
-		this._settings = null;
-		this.keyboard = null;
 		if (this._pastingKeypressTimeout) {
 			clearTimeout(this._pastingKeypressTimeout);
 		}
@@ -213,5 +211,7 @@ export default class PastePresets extends Extension {
 			this._indicator = null;
 		}
 		Main.wm.removeKeybinding("open");
+		this._settings = null;
+		this.keyboard = null;
 	}
 }
