@@ -29,7 +29,9 @@ export default class MyPrefs extends ExtensionPreferences {
 			title: _("Configure the Text Entries"),
 		});
 		const configTip1 = new Gtk.Label({
-			label: _("Each line in the Preset File is one entry."),
+			label: _(
+				"Each line in the Preset File is one entry. Disable and re-enable the extension after editing the Preset File."
+			),
 			wrap: true,
 			xalign: 0.5,
 			justify: Gtk.Justification.CENTER,
@@ -80,6 +82,7 @@ export default class MyPrefs extends ExtensionPreferences {
 		saveButton.connect("clicked", () => {
 			const value = entry.text.trim();
 			if (value) settings.set_strv("open", [value]);
+			window.close();
 		});
 
 		group1.add(row1);
