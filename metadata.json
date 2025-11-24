@@ -2,7 +2,7 @@
 	"name": "Paste Presets",
 	"description": "Quickly copy and paste frequently used text, like your e-mail address or phone number.\n\nThis extension lets you specify text presets, which you can then call up and insert anywhere with the mouse or keyboard shortcuts. This requires write-access to the clipboard of course.",
 	"uuid": "paste-presets@felixhuesken.de",
-	"shell-version": ["48"],
+	"shell-version": ["49"],
 	"settings-schema": "org.gnome.shell.extensions.paste-presets",
 	"gettext-domain": "paste-presets",
 	"url": "https://github.com/felix-huesken/paste-presets"
