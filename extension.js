@@ -59,10 +59,17 @@ export default class PastePresets extends Extension {
 		this._settings = this.getSettings();
 		this._settings.set_string("path", this.dir.get_path());
 		this._indicator = new PanelMenu.Button(0.0, "PanelButton", false);
+		this._indicator.menu.connect(
+			"open-state-changed",
+			this._menuOpenClose.bind(this)
+		);
+		this._settings.connect("changed::indicator", () => {
+			this._indicator.visible = this._settings.get_boolean("indicator");
+		});
 		this._createMenu();
 
 		Main.wm.addKeybinding(
-			"open",
+			"shortcutopen",
 			this._settings,
 			Meta.KeyBindingFlags.NONE,
 			Shell.ActionMode.ALL,
@@ -76,6 +83,7 @@ export default class PastePresets extends Extension {
 
 		this._indicator.add_child(icon);
 		Main.panel.addToStatusArea("Paste Presets", this._indicator);
+		this._indicator.visible = this._settings.get_boolean("indicator");
 	}
 
 	_toggleMenu() {
@@ -90,10 +98,13 @@ export default class PastePresets extends Extension {
 			selectionCounter++;
 			if (selectionCounter >= presets.length) {
 				menu.close();
+				this._indicator.visible =
+					this._settings.get_boolean("indicator");
 				selectionCounter = 0;
 				menu.open();
 			}
 		} else {
+			this._indicator.visible = true;
 			selectionCounter = 0;
 			menu.open();
 			if (this._pastingKeypressTimeout) {
@@ -104,6 +115,14 @@ export default class PastePresets extends Extension {
 				this.keyboard.press(Clutter.KEY_Down);
 				this.keyboard.release(Clutter.KEY_Down);
 			}, 100);
+		}
+	}
+
+	_menuOpenClose() {
+		if (this._indicator.menu.isOpen) {
+			this._indicator.visible = true;
+		} else {
+			this._indicator.visible = this._settings.get_boolean("indicator");
 		}
 	}
 
@@ -128,6 +147,8 @@ export default class PastePresets extends Extension {
 					clipboard.set_text(St.ClipboardType.CLIPBOARD, presets[i]);
 
 					this._indicator.menu.close();
+					this._indicator.visible =
+						this._settings.get_boolean("indicator");
 
 					/* 
 					Paste the selected text entry from the clipboard.
@@ -210,7 +231,7 @@ export default class PastePresets extends Extension {
 			this._indicator.destroy();
 			this._indicator = null;
 		}
-		Main.wm.removeKeybinding("open");
+		Main.wm.removeKeybinding("shortcutopen");
 		this._settings = null;
 		this.keyboard = null;
 	}
