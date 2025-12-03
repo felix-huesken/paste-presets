@@ -2,7 +2,7 @@
 <schemalist  gettext-domain="paste-presets">
   <schema id="org.gnome.shell.extensions.paste-presets"
           path="/org/gnome/shell/extensions/paste-presets/">
-    <key name="open" type="as">
+    <key name="shortcutopen" type="as">
       <default><![CDATA[['<Super>c']]]></default>
       <summary>Open</summary>
       <description>Keyboard shortcut to open the extension menu and select the next entry. Press repeatedly to select the next entry.</description>
@@ -11,9 +11,14 @@
       <default>""</default>
       <summary>extension path</summary>
     </key>
+    <key name="indicator" type="b">
+      <default>true</default>
+      <summary>show indicator</summary>
+    </key>
   </schema>
 </schemalist>
 
 <!-- Compile this file after editing it with the following terminal command:
 glib-compile-schemas ~/.local/share/gnome-shell/extensions/paste-presets\@felixhuesken.de/schemas/
+glib-compile-schemas
 -->
