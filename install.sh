@@ -4,7 +4,7 @@ DOMAIN=felixhuesken.de
 UUID=$NAME@$DOMAIN
 ZIP_NAME=$UUID.zip
 
-echo "---------------- $NAME-extension ----------------"
+echo "---------------- $NAME extension ----------------"
 
 echo "Creating zip file..."
 zip -qr $ZIP_NAME ./* && echo "zip file created"

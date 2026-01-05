@@ -3,7 +3,7 @@ NAME=paste-presets
 DOMAIN=felixhuesken.de
 UUID=$NAME@$DOMAIN
 
-echo "---------------- $NAME-extension ----------------"
+echo "---------------- $NAME extension ----------------"
 
 if $(gnome-extensions list | grep -q $UUID); then
     gnome-extensions uninstall $UUID
