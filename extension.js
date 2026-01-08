@@ -26,6 +26,19 @@ https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator
 
 */
 
+/*
+Reminder for myself:
+
+Compile XML schema:
+glib-compile-schemas paste-presets\@felixhuesken.de/schemas/
+
+Create PO for translation:
+xgettext --from-code=UTF-8 --output=po/paste-presets@felixhuesken.de.pot *.js
+
+Create package for upload:
+gnome-extensions pack --podir=po --extra-source=LICENSE --extra-source=presets.txt --extra-source=keyboard.js paste-presets@felixhuesken.de
+*/
+
 import {
 	Extension,
 	gettext as _,
