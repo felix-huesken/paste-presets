@@ -135,16 +135,16 @@ export default class PastePresets extends Extension {
 			presets = await this._readLinesFromFile();
 
 			for (let i = 0; i < presets.length; i++) {
-				let itemLabel = presets[i];
+				let itemLabel = presets[i].replace(/\\n/g, "⤷"); // Show newlines as arrows in the menu
 				if (presets[i].length > 50) {
-					itemLabel = presets[i].slice(0, 50) + "...";
+					itemLabel = itemLabel.slice(0, 50) + "...";
 				}
 				let item = new PopupMenu.PopupMenuItem(itemLabel);
 
 				item.connect("activate", () => {
 					// Get the clipboard and insert the currently selected text entry into it.
 					const clipboard = St.Clipboard.get_default();
-					clipboard.set_text(St.ClipboardType.CLIPBOARD, presets[i]);
+					clipboard.set_text(St.ClipboardType.CLIPBOARD, presets[i].replace(/\\n/g, "\n")); // Restore newlines
 
 					this._indicator.menu.close();
 					this._indicator.visible =
