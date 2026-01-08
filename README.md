@@ -1,6 +1,9 @@
 # Paste Presets
-A GNOME Extension to quickly copy and paste frequently used text, like your e-mail address or phone number.
+Quickly copy and paste frequently used text, like your e-mail address or phone number.
 
-You can call up and insert your text presets anywhere with the mouse or simple keyboard shortcuts. This requires write-access to the clipboard of course.
+This extension lets you specify text presets, which you can then call up and insert anywhere with the mouse or keyboard shortcuts.
 
-Default Keyboard Shortcut: Super-C
+Default Shortcut: Super-C
+Type \n into your text presets to add line breaks.
+
+This Extension requires write-access to the clipboard.
