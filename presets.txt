@@ -1,2 +1,3 @@
 Hello World!
-Paste me!
+This is a very long text block, which will be cut off in the UI.
+Text with a line\nbreak
