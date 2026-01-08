@@ -19,6 +19,5 @@
 </schemalist>
 
 <!-- Compile this file after editing it with the following terminal command:
-glib-compile-schemas ~/.local/share/gnome-shell/extensions/paste-presets\@felixhuesken.de/schemas/
-glib-compile-schemas
+glib-compile-schemas paste-presets\@felixhuesken.de/schemas/
 -->
